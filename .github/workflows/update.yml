@@ -1,0 +1,29 @@
+name: Update Progress
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Run tracker
+        run: node scripts/tracker.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "LeetCode Bot"
+          git config user.email "bot@leetcode.com"
+          git add .
+          git commit -m "🤖 auto update progress" || echo "No changes"
+          git push
