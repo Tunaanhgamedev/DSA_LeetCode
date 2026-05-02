@@ -2,7 +2,7 @@ const { exec } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const [,, name, lang, level] = process.argv;
+const [, , name, lang, level] = process.argv;
 
 if (!name || !lang || !level) {
   console.log("❌ Usage: node create-problem.js <name> <lang> <level>");
@@ -19,7 +19,7 @@ const fileName = name.toLowerCase().replace(/\s+/g, "-");
 const extMap = {
   js: "js",
   "c++": "cpp",
-  "c#": "cs"
+  "c#": "cs",
 };
 
 const ext = extMap[lang];
@@ -29,7 +29,7 @@ if (!ext) {
   process.exit(1);
 }
 
-// tạo folder nếu chưa có
+// tạo folder
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true });
 }
@@ -93,7 +93,3 @@ console.log("✅ Created:", mdPath);
 // mở VS Code
 exec(`code "${codePath}"`);
 exec(`code "${mdPath}"`);
-
-// auto commit
-exec(`git add .`);
-exec(`git commit -m "feat: create ${fileName}"`);
