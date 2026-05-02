@@ -49,8 +49,13 @@ https://leetcode.com/problems/${fileName}/
 ## 🟢 Level
 ${level}
 
+## 🧠 Pattern
+HashMap
+
+---
+
 ## 🏷️ Tags
-#array #hashmap
+#array #hashmap #two-pointer
 
 ---
 
