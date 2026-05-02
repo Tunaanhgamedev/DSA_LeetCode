@@ -41,17 +41,10 @@
 ```bash id="r4nx9y"
 leetcode/
  ├── c++/
- |    ├── easy/
- |    ├── medium/
- |    ├── hard/
  ├── c#/
- |    ├── easy/
- |    ├── medium/
- |    ├── hard/
  ├── js/
- |    ├── easy/
- |    ├── medium/
- |    ├── hard/
+ ├── scripts/        # auto tracker
+ ├── notes/          # ghi chú & patterns
  └── README.md
 ```
 
