@@ -1,65 +1,91 @@
+/* Standard CSS Variables for compatibility */
+:root {
+  --color-brand-primary: #6366f1;
+  --color-brand-secondary: #a855f7;
+  --color-brand-accent: #06b6d4;
+  --color-bg-deep: #030712;
+  --color-bg-card: rgba(17, 24, 39, 0.7);
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Fallback for Tailwind v3/v4 directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: var(--font-inter);
+  background-color: var(--color-bg-deep) !important;
+  color: #f3f4f6;
+  overflow-x: hidden;
 }
 
-.bg {
+/* Ensure the background is dark even if tailwind classes fail in JSX */
+#root, .app-container {
+  background-color: var(--color-bg-deep);
   min-height: 100vh;
-  transition: 0.5s;
 }
 
-.app {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
+/* Glassmorphism utility */
+.glass {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 10px;
+.glass-hover:hover {
+  background: rgba(31, 41, 55, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
 }
 
-.card {
-  background: rgba(255,255,255,0.1);
-  padding: 15px;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.bar {
-  height: 10px;
-  background: #333;
-}
-
-.fill {
-  height: 10px;
-  background: lime;
-}
-
-.heatmap {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.cell {
-  width: 10px;
-  height: 10px;
-  margin: 2px;
-  background: lime;
-}
-
-.levelup {
+/* Animated background glow */
+.bg-glow {
   position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  font-size: 30px;
-  color: gold;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Changed from -1 to 0 to ensure it's visible but below content */
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+  filter: blur(60px);
 }
 
-.fire {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Utility classes for layout if tailwind fails */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.justify-between { justify-content: space-between; }
+.items-center { align-items: center; }
