@@ -1,0 +1,7 @@
+{
+  "name": "dsa-leetcode",
+  "version": "1.0.0",
+  "scripts": {
+    "commit": "node scripts/tracker.js && git add . && git commit -m \"update progress\""
+  }
+}
