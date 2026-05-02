@@ -63,18 +63,6 @@ node scripts/tracker.js
 
 ---
 
-👉 Bạn thêm section này vào README:
-```md
-
-## 💼 Portfolio Value
-
-- Thể hiện khả năng học thuật toán có hệ thống
-- Có tracking tiến độ rõ ràng
-- Áp dụng automation (Node.js script)
-- Có ghi chú và pattern học tập
-```
----
-
 ## 🧠 Topics Covered
 
 * Arrays
