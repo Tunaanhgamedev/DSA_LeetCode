@@ -70,7 +70,7 @@ node scripts/tracker.js
 - Có tracking tiến độ rõ ràng
 - Áp dụng automation (Node.js script)
 - Có ghi chú và pattern học tập
-
+```
 ---
 
 ## 🧠 Topics Covered
