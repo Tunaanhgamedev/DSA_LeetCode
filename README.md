@@ -15,6 +15,13 @@
 
 ---
 
+## 📊 Stats
+
+![Total](https://img.shields.io/badge/Total-0-blue?style=for-the-badge)
+![Easy](https://img.shields.io/badge/Easy-0-green?style=for-the-badge)
+![Medium](https://img.shields.io/badge/Medium-0-orange?style=for-the-badge)
+![Hard](https://img.shields.io/badge/Hard-0-red?style=for-the-badge)
+
 ## 🚀 Overview
 
 Đây là repository ghi lại quá trình học **Data Structures & Algorithms (DSA)** thông qua các bài tập trên LeetCode.
