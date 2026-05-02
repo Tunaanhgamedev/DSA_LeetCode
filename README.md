@@ -50,6 +50,18 @@ leetcode/
 
 ---
 
+## 🤖 Automation
+
+Repository sử dụng script Node.js để:
+- Tự động đếm số bài đã giải
+- Cập nhật bảng Progress trong README
+
+Chạy:
+```bash
+node scripts/tracker.js
+
+---
+
 ## 🧠 Topics Covered
 
 * Arrays
