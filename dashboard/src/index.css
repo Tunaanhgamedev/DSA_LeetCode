@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.bg {
+  min-height: 100vh;
+  transition: 0.5s;
+}
+
+.app {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 10px;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.bar {
+  height: 10px;
+  background: #333;
+}
+
+.fill {
+  height: 10px;
+  background: lime;
+}
+
+.heatmap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 10px;
+  height: 10px;
+  margin: 2px;
+  background: lime;
+}
+
+.levelup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 30px;
+  color: gold;
+}
+
+.fire {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
