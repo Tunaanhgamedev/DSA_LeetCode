@@ -4,7 +4,7 @@
 https://leetcode.com/problems/two-sum/
 
 ## 🟢 Level
-easy
+Easy
 
 ## 🏷️ Tags
 #array #hashmap
@@ -12,26 +12,30 @@ easy
 ---
 
 ## 💡 Ý tưởng
-- ...
+- Duyệt mảng 1 lần
+- Dùng HashMap lưu giá trị đã gặp
+- Với mỗi số → kiểm tra target - num
 
 ---
 
 ## ⚡ Complexity
-- Time: 
-- Space: 
+- Time: O(n)
+- Space: O(n)
 
 ---
 
 ## ❌ Sai lầm
-- ...
+- Dùng 2 vòng for → O(n²)
+- Không nghĩ tới việc lưu lại giá trị đã gặp
 
 ---
 
 ## 🧠 Pattern
-...
+Hash Map / Lookup
 
 ---
 
 ## 🔁 Review
 - ☐ Làm lại sau 1 ngày
 - ☐ Làm lại sau 1 tuần
+- ☐ Nhớ pattern

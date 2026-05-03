@@ -1,13 +1,18 @@
-# 🧩 Two Sum
+# 🧩 Rotate String
 
 ## 🔗 Link
-https://leetcode.com/problems/two-sum/
+https://leetcode.com/problems/rotate-string/
 
 ## 🟢 Level
 easy
 
+## 🧠 Pattern
+HashMap
+
+---
+
 ## 🏷️ Tags
-#array #hashmap
+#array #hashmap #two-pointer
 
 ---
 
