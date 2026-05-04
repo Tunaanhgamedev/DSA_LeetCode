@@ -19,9 +19,9 @@
 
 ## 📊 Stats
 
-![Total](https://img.shields.io/badge/Total-2-blue?style=for-the-badge)
+![Total](https://img.shields.io/badge/Total-3-blue?style=for-the-badge)
 ![Easy](https://img.shields.io/badge/Easy-2-green?style=for-the-badge)
-![Medium](https://img.shields.io/badge/Medium-0-orange?style=for-the-badge)
+![Medium](https://img.shields.io/badge/Medium-1-orange?style=for-the-badge)
 ![Hard](https://img.shields.io/badge/Hard-0-red?style=for-the-badge)
 
 ---
