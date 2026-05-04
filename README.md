@@ -93,7 +93,7 @@ node scripts/tracker.js
 | Level  | Solved |
 | ------ | ------ |
 | Easy   | 2      |
-| Medium | 0      |
+| Medium | 1      |
 | Hard   | 0      |
 
 > 🔄 (Cập nhật số lượng bài mỗi ngày)
