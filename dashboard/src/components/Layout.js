@@ -8,7 +8,6 @@ export default function Layout({ children }) {
 
   return (
     <div style={{ 
-      display: 'flex', 
       minHeight: '100vh', 
       backgroundColor: '#030712', 
       color: 'white',
@@ -29,7 +28,7 @@ export default function Layout({ children }) {
         />
       )}
 
-      {/* Sidebar - Using fixed position for desktop */}
+      {/* Sidebar - Fixed Position */}
       <div 
         className={`sidebar-container ${isMobileMenuOpen ? 'open' : ''}`}
         style={{
@@ -46,17 +45,18 @@ export default function Layout({ children }) {
         <Sidebar />
       </div>
 
-      {/* Main Content Area - Offset by sidebar width */}
+      {/* Main Content Area - Explicit Padding instead of Margin */}
       <main className="main-content" style={{ 
-        flex: 1,
-        padding: '2rem',
+        paddingLeft: '280px', // This is the key fix for overlap
+        minHeight: '100vh',
         width: '100%',
-        minWidth: 0,
         boxSizing: 'border-box'
       }}>
-        <Header />
-        <div style={{ width: '100%' }}>
-          {children}
+        <div style={{ padding: '2rem' }}>
+          <Header />
+          <div style={{ width: '100%' }}>
+            {children}
+          </div>
         </div>
       </main>
 

@@ -15,15 +15,15 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Main content offset for fixed sidebar */
+/* Main content offset */
 .main-content {
-  margin-left: 280px;
-  transition: margin-left 0.3s ease;
+  padding-left: 280px !important;
+  transition: padding-left 0.3s ease;
 }
 
 @media (max-width: 1024px) {
   .main-content {
-    margin-left: 0;
+    padding-left: 0 !important;
   }
 
   .sidebar-container {
@@ -48,10 +48,6 @@ body {
     grid-template-columns: 1fr !important;
   }
   
-  main {
-    padding: 1rem !important;
-  }
-
   .glass {
     padding: 1.5rem !important;
   }
