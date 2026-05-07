@@ -1,14 +1,23 @@
-import { Search, Bell, User } from "lucide-react";
+import { useState } from "react";
+import { Search, Bell, User, X } from "lucide-react";
 
 export default function Header() {
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+
   return (
     <header style={{ 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'space-between',
-      gap: '1rem'
+      gap: '1rem',
+      position: 'relative'
     }}>
-      <div style={{ flex: 1, maxWidth: '600px' }} className="search-container">
+      {/* SEARCH CONTAINER */}
+      <div style={{ 
+        flex: 1, 
+        maxWidth: '600px',
+        display: showMobileSearch ? 'block' : undefined 
+      }} className={`search-container ${showMobileSearch ? 'mobile-active' : ''}`}>
         <div style={{ position: 'relative' }}>
           <Search 
             style={{ 
@@ -34,21 +43,53 @@ export default function Header() {
               fontSize: '0.9rem'
             }}
           />
+          {/* Nút X để đóng search trên mobile */}
+          <button 
+            onClick={() => setShowMobileSearch(false)}
+            className="mobile-close-search"
+            style={{
+              position: 'absolute',
+              right: '0.5rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'transparent',
+              border: 'none',
+              color: '#9ca3af',
+              display: 'none'
+            }}
+          >
+            <X size={18} />
+          </button>
         </div>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        {/* Nút kính lúp hiện ra trên mobile */}
+        {!showMobileSearch && (
+          <button 
+            onClick={() => setShowMobileSearch(true)}
+            className="mobile-search-trigger"
+            style={{
+              display: 'none',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              padding: '0.6rem',
+              borderRadius: '0.75rem',
+              color: '#9ca3af'
+            }}
+          >
+            <Search size={20} />
+          </button>
+        )}
+
         <button style={{
           backgroundColor: 'rgba(255,255,255,0.05)',
           border: '1px solid rgba(255,255,255,0.1)',
           padding: '0.6rem',
           borderRadius: '0.75rem',
           color: '#9ca3af',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }} className="icon-btn">
+          cursor: 'pointer'
+        }}>
           <Bell size={20} />
         </button>
         
@@ -60,8 +101,8 @@ export default function Header() {
           borderRadius: '1rem',
           backgroundColor: 'rgba(255,255,255,0.02)',
           border: '1px solid rgba(255,255,255,0.05)'
-        }} className="user-profile">
-          <span style={{ fontWeight: '600', fontSize: '0.9rem' }} className="username-text">Tunamoi</span>
+        }} className="header-user-profile">
+          <span style={{ fontWeight: '600', fontSize: '0.9rem' }}>Tunamoi</span>
           <div style={{
             width: '36px',
             height: '36px',
@@ -69,8 +110,7 @@ export default function Header() {
             background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            border: '2px solid rgba(255,255,255,0.1)'
+            justifyContent: 'center'
           }}>
             <User size={20} color="white" />
           </div>
@@ -78,16 +118,27 @@ export default function Header() {
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
+          .header-user-profile {
+            display: none !important; /* Ẩn ở header vì đã có ở Sidebar */
+          }
           .search-container {
-            display: none !important; /* Ẩn thanh tìm kiếm trên điện thoại để nhường chỗ */
+            display: none;
           }
-          .username-text {
-            display: none; /* Ẩn chữ Tunamoi, chỉ để lại icon profile cho gọn */
+          .search-container.mobile-active {
+            display: block !important;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: #030712;
           }
-          .user-profile {
-            background: transparent !important;
-            border: none !important;
+          .mobile-search-trigger {
+            display: block !important;
+          }
+          .mobile-close-search {
+            display: block !important;
           }
         }
       `}</style>

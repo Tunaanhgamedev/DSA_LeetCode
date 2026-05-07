@@ -49,7 +49,7 @@ export default function Sidebar({ closeMenu }) {
             <Link
               key={item.label}
               to={item.path}
-              onClick={closeMenu} // Đóng menu sau khi chọn link trên mobile
+              onClick={closeMenu}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -69,6 +69,32 @@ export default function Sidebar({ closeMenu }) {
           );
         })}
       </nav>
+
+      {/* USER PROFILE IN SIDEBAR (FOR MOBILE) */}
+      <div style={{ 
+        marginTop: 'auto', 
+        paddingTop: '1.5rem', 
+        borderTop: '1px solid rgba(255,255,255,0.05)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.75rem'
+      }}>
+        <div style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <User size={20} color="white" />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>Tunamoi</span>
+          <span style={{ fontSize: '0.75rem', color: '#9ca3af' }}>Pro Member</span>
+        </div>
+      </div>
     </div>
   );
 }
