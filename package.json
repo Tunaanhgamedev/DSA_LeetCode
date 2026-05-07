@@ -4,6 +4,6 @@
   "scripts": {
   "commit": "node scripts/auto-commit.js",
   "push": "git pull origin main --rebase && git push",
-  "auto": "node scripts/tracker.js && npm run commit && npm run push"
+  "auto": "node scripts/tracker.js && node scripts/stats.js && npm run commit && npm run push"
   }
 }
