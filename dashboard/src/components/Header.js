@@ -1,81 +1,96 @@
-import { Bell, Search, UserCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { Search, Bell, User } from "lucide-react";
 
 export default function Header() {
   return (
-    <motion.header 
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '2rem',
-        backgroundColor: 'transparent',
-        gap: '1rem'
-      }}
-    >
-      <div style={{ minWidth: 0 }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', margin: 0, letterSpacing: '-0.025em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Overview</h1>
-        <p className="hidden sm:block" style={{ color: '#9ca3af', fontSize: '0.875rem', marginTop: '0.25rem', margin: 0 }}>Welcome back, Tunamoi!</p>
-      </div>
-
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <div className="header-actions" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-          <Search style={{ position: 'absolute', left: '0.75rem', color: '#6b7280' }} size={18} />
-          <input 
-            type="text" 
-            placeholder="Search..." 
+    <header style={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'space-between',
+      gap: '1rem'
+    }}>
+      <div style={{ flex: 1, maxWidth: '600px' }} className="search-container">
+        <div style={{ position: 'relative' }}>
+          <Search 
+            style={{ 
+              position: 'absolute', 
+              left: '1rem', 
+              top: '50%', 
+              transform: 'translateY(-50%)', 
+              color: '#9ca3af' 
+            }} 
+            size={18} 
+          />
+          <input
+            type="text"
+            placeholder="Search problems..."
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '0.75rem',
-              padding: '0.5rem 1rem 0.5rem 2.2rem',
-              fontSize: '0.875rem',
+              width: '100%',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '1rem',
+              padding: '0.75rem 1rem 0.75rem 3rem',
               color: 'white',
-              width: '180px',
               outline: 'none',
-              transition: 'all 0.2s'
+              fontSize: '0.9rem'
             }}
           />
         </div>
+      </div>
 
-        <div style={{ 
-          padding: '0.5rem', 
-          borderRadius: '0.75rem', 
-          backgroundColor: 'rgba(255, 255, 255, 0.05)', 
-          border: '1px solid rgba(255, 255, 255, 0.1)', 
-          color: '#9ca3af', 
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <button style={{
+          backgroundColor: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          padding: '0.6rem',
+          borderRadius: '0.75rem',
+          color: '#9ca3af',
           cursor: 'pointer',
-          position: 'relative',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
-        }}>
+        }} className="icon-btn">
           <Bell size={20} />
-          <span style={{ position: 'absolute', top: '0.5rem', right: '0.5rem', width: '8px', height: '8px', backgroundColor: '#6366f1', borderRadius: '50%', border: '2px solid #030712' }} />
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingLeft: '1rem', borderLeft: '1px solid rgba(255, 255, 255, 0.1)' }}>
-          <div className="hidden sm:block" style={{ textAlign: 'right' }}>
-            <p style={{ fontSize: '0.875rem', fontWeight: 600, color: 'white', margin: 0 }}>Tunamoi</p>
-          </div>
-          <div style={{ 
-            width: '36px', 
-            height: '36px', 
-            borderRadius: '50%', 
-            background: 'linear-gradient(to top right, #6366f1, #a855f7)', 
-            display: 'flex', 
-            alignItems: 'center', 
+        </button>
+        
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '0.75rem',
+          padding: '0.25rem 0.5rem',
+          borderRadius: '1rem',
+          backgroundColor: 'rgba(255,255,255,0.02)',
+          border: '1px solid rgba(255,255,255,0.05)'
+        }} className="user-profile">
+          <span style={{ fontWeight: '600', fontSize: '0.9rem' }} className="username-text">Tunamoi</span>
+          <div style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'center',
-            padding: '2px'
+            border: '2px solid rgba(255,255,255,0.1)'
           }}>
-             <div style={{ width: '100%', height: '100%', borderRadius: '50%', backgroundColor: '#030712', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                <UserCircle style={{ color: '#6b7280' }} size={28} />
-             </div>
+            <User size={20} color="white" />
           </div>
         </div>
       </div>
-    </motion.header>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .search-container {
+            display: none !important; /* Ẩn thanh tìm kiếm trên điện thoại để nhường chỗ */
+          }
+          .username-text {
+            display: none; /* Ẩn chữ Tunamoi, chỉ để lại icon profile cho gọn */
+          }
+          .user-profile {
+            background: transparent !important;
+            border: none !important;
+          }
+        }
+      `}</style>
+    </header>
   );
 }
