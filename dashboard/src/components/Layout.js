@@ -8,47 +8,58 @@ export default function Layout({ children }) {
 
   return (
     <div style={{ 
+      display: 'flex',
       minHeight: '100vh', 
       backgroundColor: '#030712', 
       color: 'white',
       fontFamily: "'Inter', sans-serif",
-      display: 'flex' // Use flex as base
+      position: 'relative'
     }}>
-      {/* Sidebar - Fixed width, NOT fixed position to occupy space */}
+      {/* Sidebar - Position Absolute to force it to stay on top but Grid/Flex parent to hold space */}
       <div 
-        className="sidebar-wrapper"
         style={{
           width: '280px',
-          flexShrink: 0,
+          minWidth: '280px',
           height: '100vh',
-          position: 'sticky',
+          position: 'fixed',
+          left: 0,
           top: 0,
           backgroundColor: '#030712',
-          borderRight: '1px solid rgba(255, 255, 255, 0.05)',
-          zIndex: 40,
-          display: window.innerWidth < 1024 ? (isMobileMenuOpen ? 'block' : 'none') : 'block'
+          borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+          zIndex: 999, // Very high z-index
+          transition: 'transform 0.3s ease',
+          transform: window.innerWidth < 1024 && !isMobileMenuOpen ? 'translateX(-100%)' : 'translateX(0)'
         }}
       >
         <Sidebar />
       </div>
 
-      {/* Main Content Area - Just take the rest of the flex space */}
-      <main style={{ 
-        flex: 1,
-        minWidth: 0, // Critical for flex children
+      {/* Main Content Area - Use a SIMPLE wrapper with a massive margin */}
+      <div style={{ 
+        marginLeft: '280px', // FORCED MARGIN
+        width: 'calc(100% - 280px)',
         padding: '2rem',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        minHeight: '100vh'
       }}>
         <Header />
-        <div style={{ width: '100%' }}>
+        <div style={{ marginTop: '2rem' }}>
           {children}
         </div>
-      </main>
+      </div>
 
-      {/* Mobile Toggle & Overlay (Omitted for brevity, keeping existing logic) */}
+      {/* Styles to fix mobile view specifically */}
+      <style>{`
+        @media (max-width: 1024px) {
+          div[style*="marginLeft: 280px"] {
+            margin-left: 0 !important;
+            width: 100% !important;
+          }
+        }
+      `}</style>
+
       <button 
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="mobile-toggle"
         style={{
           position: 'fixed',
           bottom: '1.5rem',
@@ -59,7 +70,7 @@ export default function Layout({ children }) {
           backgroundColor: '#6366f1',
           color: 'white',
           border: 'none',
-          zIndex: 50,
+          zIndex: 1000,
           display: window.innerWidth < 1024 ? 'flex' : 'none',
           alignItems: 'center',
           justifyContent: 'center'

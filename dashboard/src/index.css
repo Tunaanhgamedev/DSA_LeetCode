@@ -1,13 +1,12 @@
-/* Global styles */
+/* KHÔI PHỤC LẠI GIAO DIỆN CHUẨN */
 body {
+  background-color: #030712;
   margin: 0;
   padding: 0;
-  background-color: #030712;
   color: white;
-  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
-/* Glassmorphism utility */
 .glass {
   background: rgba(17, 24, 39, 0.7);
   backdrop-filter: blur(12px);
@@ -15,55 +14,15 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Main content offset */
-.main-content {
-  padding-left: 280px !important;
-  transition: padding-left 0.3s ease;
+/* Đảm bảo Grid luôn ổn định */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
 @media (max-width: 1024px) {
-  .main-content {
-    padding-left: 0 !important;
-  }
-
-  .sidebar-container {
-    transform: translateX(-100%);
-  }
-
-  .sidebar-container.open {
-    transform: translateX(0);
-  }
-
-  .main-grid {
-    grid-template-columns: 1fr !important;
-  }
-
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .stats-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .glass {
-    padding: 1.5rem !important;
-  }
-
-  .header-actions {
-    display: none !important;
-  }
-}
-
-/* Animation utilities */
-.mobile-toggle {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .mobile-toggle {
-    display: flex;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
