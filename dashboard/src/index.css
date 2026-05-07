@@ -1,28 +1,119 @@
-/* KHÔI PHỤC LẠI GIAO DIỆN CHUẨN */
-body {
-  background-color: #030712;
+/* Global Styles */
+body, html {
   margin: 0;
   padding: 0;
+  background-color: #030712;
   color: white;
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* SIDEBAR STYLES */
+.sidebar-wrapper {
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #030712;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 2000;
+  transition: transform 0.3s ease;
+}
+
+/* MAIN CONTENT STYLES */
+.main-wrapper {
+  flex-grow: 1;
+  min-width: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.content-padding {
+  padding: 1.5rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.header-inner {
+  flex: 1;
+}
+
+/* RESPONSIVE LOGIC */
+
+/* DESKTOP (Lớn hơn 1024px) */
+@media (min-width: 1024px) {
+  .sidebar-wrapper {
+    transform: translateX(0) !important; /* Luôn hiện sidebar */
+  }
+  .main-wrapper {
+    margin-left: 280px !important; /* LUÔN CÁCH LỀ 280PX ĐỂ KHÔNG BỊ CHE */
+  }
+  .mobile-toggle-btn {
+    display: none !important; /* Ẩn nút menu trên desktop */
+  }
+}
+
+/* MOBILE/TABLET (Dưới 1024px) */
+@media (max-width: 1023px) {
+  .sidebar-wrapper {
+    transform: translateX(-100%); /* Giấu sidebar sang trái */
+  }
+  .sidebar-wrapper.open {
+    transform: translateX(0); /* Hiện khi có class 'open' */
+  }
+  .main-wrapper {
+    margin-left: 0 !important; /* Nội dung tràn màn hình */
+  }
+  .mobile-toggle-btn {
+    display: block;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.6rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+  }
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1500;
+  }
+}
+
+/* GRIDS RESPONSIVE */
+.stats-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .header-container { margin-bottom: 1rem; }
+}
+
+/* Glassmorphism Effect */
 .glass {
   background: rgba(17, 24, 39, 0.7);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Đảm bảo Grid luôn ổn định */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
 }

@@ -3,8 +3,7 @@ import {
   Code2, 
   Trophy, 
   User, 
-  Settings, 
-  LogOut 
+  Settings
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -16,15 +15,13 @@ const menuItems = [
   { icon: Settings, label: "Settings", path: "/settings" },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ closeMenu }) {
   const location = useLocation();
 
   return (
-    <div style={{ 
-      width: '280px', 
+    <div className="sidebar-inner" style={{ 
       height: '100%',
       backgroundColor: '#030712', 
-      borderRight: '1px solid rgba(255, 255, 255, 0.05)',
       display: 'flex', 
       flexDirection: 'column',
       padding: '1.5rem'
@@ -52,6 +49,7 @@ export default function Sidebar() {
             <Link
               key={item.label}
               to={item.path}
+              onClick={closeMenu} // Đóng menu sau khi chọn link trên mobile
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -71,25 +69,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-
-      <div style={{ marginTop: 'auto', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '1.5rem' }}>
-        <button style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.75rem',
-          padding: '0.875rem 1rem',
-          width: '100%',
-          backgroundColor: 'transparent',
-          border: 'none',
-          color: '#ef4444',
-          cursor: 'pointer',
-          fontSize: '1rem',
-          transition: 'all 0.2s'
-        }}>
-          <LogOut size={20} />
-          <span>Logout</span>
-        </button>
-      </div>
     </div>
   );
 }
