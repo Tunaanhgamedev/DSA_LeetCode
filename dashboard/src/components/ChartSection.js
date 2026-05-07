@@ -24,26 +24,37 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function ChartSection({ stats }) {
-  // Safe defaults if stats are missing
-  const easy = stats?.Easy || 0;
-  const medium = stats?.Medium || 0;
-  const hard = stats?.Hard || 0;
-  const total = stats?.Solutions || 0;
+  // Use real historical data from stats.History (linked to log.json)
+  const history = stats?.History || {};
+  
+  // Convert history object to sorted array for the chart
+  const data = Object.keys(history)
+    .sort() // Sort by date
+    .map(date => ({
+      date: date,
+      name: date.split('-').slice(1).join('/'), // Format YYYY-MM-DD to MM/DD
+      count: Number(history[date]) || 0
+    }))
+    .slice(-7); // Take last 7 days
 
-  const data = [
-    { name: "Mon", count: Math.max(1, Math.floor(easy / 2)) },
-    { name: "Tue", count: Math.max(2, Math.floor(medium + 1)) },
-    { name: "Wed", count: Math.max(1, easy) },
-    { name: "Thu", count: Math.max(3, hard + 2) },
-    { name: "Fri", count: Math.max(2, Math.floor(total / 10)) },
-    { name: "Sat", count: Math.max(4, medium + 2) },
-    { name: "Sun", count: total % 20 || 5 }
+  // If no data, provide a fallback to prevent empty chart
+  const chartData = data.length > 0 ? data : [
+    { name: "Mon", count: 2 },
+    { name: "Tue", count: 4 },
+    { name: "Wed", count: 3 },
+    { name: "Thu", count: 7 },
+    { name: "Fri", count: 5 },
+    { name: "Sat", count: 6 },
+    { name: "Sun", count: 4 }
   ];
 
   return (
-    <div style={{ width: '100%', height: '350px', minHeight: '350px' }}>
+    <div style={{ width: '100%', height: '300px', position: 'relative' }}>
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+        <AreaChart 
+          data={chartData} 
+          margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+        >
           <defs>
             <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3}/>
@@ -62,6 +73,7 @@ export default function ChartSection({ stats }) {
             axisLine={false} 
             tickLine={false} 
             tick={{ fill: "#9ca3af", fontSize: 12 }}
+            domain={[0, 'dataMax + 2']}
           />
           <Tooltip content={<CustomTooltip />} />
           <Area 
@@ -71,7 +83,8 @@ export default function ChartSection({ stats }) {
             strokeWidth={3}
             fillOpacity={1} 
             fill="url(#colorCount)" 
-            animationDuration={2000}
+            isAnimationActive={true}
+            animationDuration={1500}
           />
         </AreaChart>
       </ResponsiveContainer>

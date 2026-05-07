@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { TrendingUp } from "lucide-react";
 
-export default function StatCard({ title, value, icon: Icon, trend }) {
+export default function StatCard({ title, value, icon: Icon, trend, color }) {
   return (
     <motion.div
       whileHover={{ y: -5, scale: 1.02 }}
@@ -24,12 +24,12 @@ export default function StatCard({ title, value, icon: Icon, trend }) {
         <div style={{ 
           padding: '0.6rem', 
           borderRadius: '0.75rem', 
-          backgroundColor: 'rgba(255, 255, 255, 0.05)', 
-          border: '1px solid rgba(255, 255, 255, 0.1)', 
-          color: '#818cf8',
+          backgroundColor: `${color}15` || 'rgba(255, 255, 255, 0.05)', 
+          border: `1px solid ${color}30` || '1px solid rgba(255, 255, 255, 0.1)', 
+          color: color || '#818cf8',
           display: 'flex'
         }}>
-          <Icon size={24} />
+          {Icon && <Icon size={24} />}
         </div>
         {trend && (
           <div style={{ 
@@ -60,7 +60,7 @@ export default function StatCard({ title, value, icon: Icon, trend }) {
           initial={{ width: 0 }}
           animate={{ width: "70%" }}
           transition={{ duration: 1, delay: 0.5 }}
-          style={{ height: '100%', background: 'linear-gradient(to right, #6366f1, #a855f7)', borderRadius: '9999px' }}
+          style={{ height: '100%', background: `linear-gradient(to right, ${color || '#6366f1'}, #a855f7)`, borderRadius: '9999px' }}
         />
       </div>
     </motion.div>

@@ -1,73 +1,94 @@
-import { LayoutDashboard, Code, User, Settings, LogOut, Award } from "lucide-react";
-import { motion } from "framer-motion";
+import { 
+  LayoutDashboard, 
+  Code2, 
+  Trophy, 
+  User, 
+  Settings, 
+  LogOut 
+} from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: Code, label: "Problems" },
-  { icon: Award, label: "Achievements" },
-  { icon: User, label: "Profile" },
-  { icon: Settings, label: "Settings" },
+  { icon: LayoutDashboard, label: "Dashboard", path: "/" },
+  { icon: Code2, label: "Problems", path: "/problems" },
+  { icon: Trophy, label: "Achievements", path: "/achievements" },
+  { icon: User, label: "Profile", path: "/profile" },
+  { icon: Settings, label: "Settings", path: "/settings" },
 ];
 
 export default function Sidebar() {
+  const location = useLocation();
+
   return (
-    <div 
-      style={{ 
-        width: '100%',
-        height: '100%', 
-        backgroundColor: 'rgba(17, 24, 39, 0.98)', 
-        borderRight: '1px solid rgba(255, 255, 255, 0.1)',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '1.5rem',
-        boxSizing: 'border-box'
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '3rem' }}>
+    <div style={{ 
+      width: '280px', 
+      height: '100%',
+      backgroundColor: '#030712', 
+      borderRight: '1px solid rgba(255, 255, 255, 0.05)',
+      display: 'flex', 
+      flexDirection: 'column',
+      padding: '1.5rem'
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2.5rem', padding: '0 0.5rem' }}>
         <div style={{ 
           width: '40px', 
           height: '40px', 
-          borderRadius: '12px',
-          background: 'linear-gradient(to bottom right, #6366f1, #a855f7)',
+          borderRadius: '12px', 
+          backgroundColor: '#6366f1',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(99, 102, 241, 0.2)'
+          boxShadow: '0 0 20px rgba(99, 102, 241, 0.3)'
         }}>
-          <Code style={{ color: 'white' }} size={24} />
+          <Code2 color="white" size={24} />
         </div>
-        <h1 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'white', margin: 0 }}>DSA Pro</h1>
+        <span style={{ fontSize: '1.25rem', fontWeight: 'bold', letterSpacing: '-0.025em' }}>DSA Pro</span>
       </div>
 
       <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        {menuItems.map((item) => (
-          <motion.div
-            key={item.label}
-            whileHover={{ x: 4 }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              padding: '0.75rem',
-              borderRadius: '0.75rem',
-              color: item.active ? '#818cf8' : '#9ca3af',
-              backgroundColor: item.active ? 'rgba(99, 102, 241, 0.1)' : 'transparent',
-              border: item.active ? '1px solid rgba(99, 102, 241, 0.2)' : 'none',
-              cursor: 'pointer',
-              transition: 'all 0.2s'
-            }}
-          >
-            <item.icon size={20} />
-            <span style={{ fontWeight: 500, fontSize: '0.875rem' }}>{item.label}</span>
-          </motion.div>
-        ))}
+        {menuItems.map((item) => {
+          const isActive = location.pathname === item.path;
+          return (
+            <Link
+              key={item.label}
+              to={item.path}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.875rem 1rem',
+                borderRadius: '0.75rem',
+                color: isActive ? 'white' : '#9ca3af',
+                backgroundColor: isActive ? 'rgba(99, 102, 241, 0.1)' : 'transparent',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+                fontWeight: isActive ? 600 : 500
+              }}
+            >
+              <item.icon size={20} color={isActive ? '#818cf8' : '#9ca3af'} />
+              <span>{item.label}</span>
+            </Link>
+          );
+        })}
       </nav>
 
-      <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#9ca3af', cursor: 'pointer', padding: '0.75rem' }}>
+      <div style={{ marginTop: 'auto', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '1.5rem' }}>
+        <button style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+          padding: '0.875rem 1rem',
+          width: '100%',
+          backgroundColor: 'transparent',
+          border: 'none',
+          color: '#ef4444',
+          cursor: 'pointer',
+          fontSize: '1rem',
+          transition: 'all 0.2s'
+        }}>
           <LogOut size={20} />
-          <span style={{ fontWeight: 500, fontSize: '0.875rem' }}>Logout</span>
-        </div>
+          <span>Logout</span>
+        </button>
       </div>
     </div>
   );

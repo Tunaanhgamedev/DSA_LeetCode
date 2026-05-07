@@ -17,7 +17,7 @@ export default function Header() {
     >
       <div style={{ minWidth: 0 }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', margin: 0, letterSpacing: '-0.025em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Overview</h1>
-        <p className="hidden sm:block" style={{ color: '#9ca3af', fontSize: '0.875rem', marginTop: '0.25rem', margin: 0 }}>Welcome back!</p>
+        <p className="hidden sm:block" style={{ color: '#9ca3af', fontSize: '0.875rem', marginTop: '0.25rem', margin: 0 }}>Welcome back, Tunamoi!</p>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -58,7 +58,7 @@ export default function Header() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingLeft: '1rem', borderLeft: '1px solid rgba(255, 255, 255, 0.1)' }}>
           <div className="hidden sm:block" style={{ textAlign: 'right' }}>
-            <p style={{ fontSize: '0.875rem', fontWeight: 600, color: 'white', margin: 0 }}>Alex Johnson</p>
+            <p style={{ fontSize: '0.875rem', fontWeight: 600, color: 'white', margin: 0 }}>Tunamoi</p>
           </div>
           <div style={{ 
             width: '36px', 
