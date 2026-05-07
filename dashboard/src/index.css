@@ -1,4 +1,4 @@
-/* Standard CSS Variables for compatibility */
+/* Standard CSS Variables */
 :root {
   --color-brand-primary: #6366f1;
   --color-brand-secondary: #a855f7;
@@ -7,9 +7,9 @@
   --color-bg-card: rgba(17, 24, 39, 0.7);
   --color-border-subtle: rgba(255, 255, 255, 0.1);
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --sidebar-width: 256px;
 }
 
-/* Fallback for Tailwind v3/v4 directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,75 +17,86 @@
 body {
   margin: 0;
   font-family: var(--font-inter);
-  background-color: var(--color-bg-deep) !important;
+  background-color: var(--color-bg-deep);
   color: #f3f4f6;
   overflow-x: hidden;
 }
 
-/* Ensure the background is dark even if tailwind classes fail in JSX */
-#root, .app-container {
-  background-color: var(--color-bg-deep);
+.app-container {
+  display: flex;
   min-height: 100vh;
+  background-color: var(--color-bg-deep);
 }
 
-/* Glassmorphism utility */
+/* Glassmorphism */
 .glass {
   background: var(--color-bg-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border-subtle);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.glass-hover:hover {
-  background: rgba(31, 41, 55, 0.8);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
+/* Responsive Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: transform 0.3s ease;
 }
 
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.content-wrapper {
+  flex: 1;
+  min-width: 0;
 }
 
-/* Animated background glow */
+/* Mobile Adjustments */
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    transform: translateX(0);
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+
+  .content-wrapper {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .p-8 {
+    padding: 1rem !important;
+  }
+  
+  .stat-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .main-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .header-actions {
+    display: none !important;
+  }
+}
+
 .bg-glow {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Changed from -1 to 0 to ensure it's visible but below content */
+  z-index: 0;
   pointer-events: none;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
   filter: blur(60px);
 }
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #030712;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1f2937;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #374151;
-}
-
-/* Utility classes for layout if tailwind fails */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.justify-between { justify-content: space-between; }
-.items-center { align-items: center; }

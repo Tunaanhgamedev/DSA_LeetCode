@@ -11,21 +11,15 @@ const menuItems = [
 
 export default function Sidebar() {
   return (
-    <motion.div 
-      initial={{ x: -240 }}
-      animate={{ x: 0 }}
+    <div 
       style={{ 
-        width: '256px', 
-        minWidth: '256px',
-        height: '100vh', 
-        backgroundColor: 'rgba(17, 24, 39, 0.95)', 
+        width: '100%',
+        height: '100%', 
+        backgroundColor: 'rgba(17, 24, 39, 0.98)', 
         borderRight: '1px solid rgba(255, 255, 255, 0.1)',
         display: 'flex',
         flexDirection: 'column',
         padding: '1.5rem',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
         boxSizing: 'border-box'
       }}
     >
@@ -75,6 +69,6 @@ export default function Sidebar() {
           <span style={{ fontWeight: 500, fontSize: '0.875rem' }}>Logout</span>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
